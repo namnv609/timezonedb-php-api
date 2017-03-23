@@ -1,2 +1,2 @@
-# timezonedb-php-api
+# TimeZoneDB API
 PHP API client for TimeZoneDB.com
