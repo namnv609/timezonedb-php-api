@@ -9,5 +9,5 @@ load_env(__DIR__);
 
 use NNV\TimeZoneDB;
 
-$tzDB = new TimeZoneDB;
+$tzDB = new TimeZoneDB(env("TIMEZONEDB_API_KEY"));
 \Psy\Shell::debug(get_defined_vars());
