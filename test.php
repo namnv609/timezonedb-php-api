@@ -10,4 +10,9 @@ load_env(__DIR__);
 use NNV\TimeZoneDB;
 
 $tzDB = new TimeZoneDB(env("TIMEZONEDB_API_KEY"));
+$getTimeZoneParams = [
+    "by" => "zone",
+    "zone" => "America/Chicago",
+];
+
 \Psy\Shell::debug(get_defined_vars());
