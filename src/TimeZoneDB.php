@@ -8,6 +8,7 @@ use Exception;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
+use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
 
 class TimeZoneDB
 {
@@ -55,6 +56,19 @@ class TimeZoneDB
         $options = $this->validateGetTimeZoneParams($options);
 
         return $this->execute("get-time-zone", $options);
+    }
+
+    /**
+     * Convert time two different time zone.
+     *
+     * @param  array  $options Request params
+     * @return \NNV\TimeZoneDB::execute
+     */
+    public function convertTimeZone(array $options)
+    {
+        $options = $this->validateConvertTimeZoneParams($options);
+
+        return $this->execute("convert-time-zone", $options);
     }
 
     /**
@@ -197,5 +211,48 @@ class TimeZoneDB
         }
 
         return $filedValue;
+    }
+
+    /**
+     * Validate Convert time zone
+     *
+     * @param  array  $convertTimeZoneParams Convert time zone params
+     * @return mixed  Symfony\Component\OptionsResolver\Exception\InvalidOptionsException or resolved data
+     */
+    private function validateConvertTimeZoneParams(array $convertTimeZoneParams)
+    {
+        $optionResolver = new OptionsResolver;
+
+        $optionResolver->setDefined(["format", "fields", "from", "to", "time"])
+            ->setRequired(["from", "to"])
+            ->setAllowedValues("format", ["json", "xml"])
+            ->setAllowedValues("fields", function($fields) {
+                $availableFields = [
+                    "fromZoneName", "fromAbbreviation", "fromTimestamp",
+                    "toZoneName", "toAbbreviation", "toTimestamp", "offset"
+                ];
+                $fieldArr = array_map(function($field) use ($availableFields) {
+                    return in_array(trim($field), $availableFields);
+                }, explode(",", $fields));
+
+                return $fields === "all" || !in_array(false, $fieldArr);
+            })
+            ->setNormalizer("time", function(Options $options, $time) {
+                // $time is valid timestamp?
+                if ((string)(int) $time === $time && $time <= PHP_INT_MAX && $time >= ~PHP_INT_MAX) {
+                    return $time;
+                }
+
+                // If $time is invalid timestamp. Try to convert it.
+                $time = strtotime($time . " UTC");
+
+                if (!$time) {
+                    throw new InvalidArgumentException("Time is invalid datetime format");
+                }
+
+                return $time;
+            });
+
+        return $optionResolver->resolve($convertTimeZoneParams);
     }
 }

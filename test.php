@@ -14,5 +14,10 @@ $getTimeZoneParams = [
     "by" => "zone",
     "zone" => "America/Chicago",
 ];
+$convertTimeZoneParams = [
+    "from" => "America/Los_Angeles",
+    "to" => "Australia/Sydney",
+    "time" => "06/01/2016 03:00PM",
+];
 
 \Psy\Shell::debug(get_defined_vars());
