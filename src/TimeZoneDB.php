@@ -38,7 +38,7 @@ class TimeZoneDB
      * @param  array  $options Request params
      * @return \NNV\TimeZoneDB::execute
      */
-    public function list(array $options = [])
+    public function listTimeZone(array $options = [])
     {
         $options = $this->validateListParams($options);
 
