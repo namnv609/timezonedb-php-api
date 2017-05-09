@@ -9,8 +9,9 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\Exception\InvalidOptionsException;
 use Symfony\Component\OptionsResolver\Exception\InvalidArgumentException;
+use NNV\TimeZoneDB\TimeZones;
 
-class TimeZoneDB
+class TimeZoneDB extends TimeZones
 {
     /**
      * TimeZoneDB API key
@@ -26,6 +27,8 @@ class TimeZoneDB
 
     public function __construct($apiKey)
     {
+        parent::__construct();
+
         $this->apiKey = $apiKey;
         $this->guzzleClient = new Client([
             "base_uri" => "http://api.timezonedb.com/v2/"
