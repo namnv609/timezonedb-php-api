@@ -1717,13 +1717,13 @@ class TimeZones
      *
      * @return array List of time zones
      */
-    public function listTimeZone()
+    public function listTimeZones()
     {
         return $this->timeZones;
     }
 
     /**
-     * Country code to time zone
+     * Country code to time zones
      *
      * @param  string $code Country code
      * @return array        List of time zones
@@ -1734,7 +1734,7 @@ class TimeZones
     }
 
     /**
-     * Country name to time zone
+     * Country name to time zones
      *
      * @param  string $country Country name
      * @return array           List of time zones
