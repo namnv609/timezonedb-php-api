@@ -7,10 +7,10 @@
 
 ## Installation
 Using Composer
-* `composer install namnv609/php-onesignal-sdk`
+* `composer install namnv609/timezonedb-php-api`
 
 or you can include the following in your `composer.json`
-* `"namnv609/php-onesignal-sdk": "1.0"`
+* `"namnv609/timezonedb-php-api": "1.0"`
 
 ## Usage Instructions
 
