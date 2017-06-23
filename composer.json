@@ -1,6 +1,7 @@
 {
     "name": "namnv609/timezonedb-php-api",
     "description": "PHP API client for TimeZoneDB.com",
+    "keywords": ["timezonedb.com", "time zone", "restful api", "convert time zone"],
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -19,10 +20,5 @@
         "php": ">=5.5",
         "guzzlehttp/guzzle": "^6.1",
         "symfony/options-resolver": "^3.2"
-    },
-    "require-dev": {
-        "symfony/var-dumper": "^3.0",
-        "psy/psysh": "^0.7",
-        "mykehowells/dotenv": "^1.0"
     }
 }
