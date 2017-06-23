@@ -1,6 +1,7 @@
 {
     "name": "namnv609/timezonedb-php-api",
     "description": "PHP API client for TimeZoneDB.com",
+    "keywords": ["time zone", "restful api", "timezonedb.com", "convert time zone"],
     "type": "library",
     "license": "MIT",
     "authors": [
